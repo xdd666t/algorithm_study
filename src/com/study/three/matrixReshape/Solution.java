@@ -10,17 +10,17 @@ package com.study.three.matrixReshape;
 //
 //链接：https://leetcode-cn.com/problems/reshape-the-matrix
 class Solution {
-//    public int[][] matrixReshape(int[][] mat, int r, int c) {
-//        int[][] result = new int[r][c];
-//        int indexOne = 0;
-//        int indexTwo = 0;
-//        for (int i = 0; i < mat.length; i++) {
-//            for (int j = 0; j < mat[i].length; j++) {
-//                if(indexTwo >= result[indexOne])
-//
-//
-//            }
-//        }
-//        return result;
-//    }
+    public int[][] matrixReshape(int[][] mat, int r, int c) {
+        int m = mat.length;
+        int n = mat[0].length;
+        if (m * n != r * c) {
+            return mat;
+        }
+
+        int[][] result = new int[r][c];
+        for (int i = 0; i < r * c; i++) {
+            result[i / c][i % c] = mat[i / n][i % n];
+        }
+        return result;
+    }
 }

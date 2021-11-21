@@ -1,4 +1,4 @@
-package com.study.three.max_profit;
+package com.study.three.maxProfit;
 
 //给定一个数组 prices ，它的第i 个元素prices[i] 表示一支给定股票第 i 天的价格。
 //

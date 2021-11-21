@@ -1,4 +1,4 @@
-package com.study.two.reverse_print;
+package com.study.two.reversePrint;
 
 import java.util.Stack;
 
