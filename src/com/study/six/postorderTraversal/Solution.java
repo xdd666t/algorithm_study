@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+//给定一个二叉树，返回它的 后序 遍历。
+//https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
