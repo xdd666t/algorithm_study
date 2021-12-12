@@ -14,37 +14,35 @@ class Solution {
         if (k == 0) {
             return 1;
         }
-        Queue<int[]> queue = new LinkedList<int[]>();
-        // 向右和向下的方向数组
-        int[] dx = {0, 1};
-        int[] dy = {1, 0};
-        boolean[][] vis = new boolean[m][n];
+
+        int[] dx = new int[]{0, 1};
+        int[] dy = new int[]{1, 0};
+        boolean[][] mark = new boolean[m][n];
+        Queue<int[]> queue = new LinkedList<>();
+        int result = 1;
         queue.offer(new int[]{0, 0});
-        vis[0][0] = true;
-        int ans = 1;
         while (!queue.isEmpty()) {
             int[] cell = queue.poll();
             int x = cell[0], y = cell[1];
-            for (int i = 0; i < 2; ++i) {
-                int tx = dx[i] + x;
-                int ty = dy[i] + y;
-                if (tx < 0 || tx >= m || ty < 0 || ty >= n || vis[tx][ty] || get(tx) + get(ty) > k) {
+            for (int i = 0; i < 2; i++) {
+                int tx = dx[i] + x, ty = dy[i] + y;
+                if (tx >= m || ty >= n || getSum(tx) + getSum(ty) > k || mark[tx][ty]) {
                     continue;
                 }
                 queue.offer(new int[]{tx, ty});
-                vis[tx][ty] = true;
-                ans++;
+                mark[tx][ty] = true;
+                result++;
             }
         }
-        return ans;
+        return result;
     }
 
-    private int get(int x) {
-        int res = 0;
-        while (x != 0) {
-            res += x % 10;
-            x /= 10;
+    int getSum(int num) {
+        int sum = 0;
+        while (num != 0) {
+            sum += num % 10;
+            num /= 10;
         }
-        return res;
+        return sum;
     }
 }
