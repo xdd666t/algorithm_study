@@ -18,22 +18,16 @@ import java.util.Set;
 //链接：https://leetcode-cn.com/problems/chou-shu-lcof/
 class Solution {
     public int nthUglyNumber(int n) {
-        int[] factors = {2, 3, 5};
-        Set<Long> seen = new HashSet<Long>();
-        PriorityQueue<Long> heap = new PriorityQueue<Long>();
-        seen.add(1L);
-        heap.offer(1L);
-        int ugly = 0;
-        for (int i = 0; i < n; i++) {
-            long curr = heap.poll();
-            ugly = (int) curr;
-            for (int factor : factors) {
-                long next = curr * factor;
-                if (seen.add(next)) {
-                    heap.offer(next);
-                }
-            }
+        int index2 = 1, index3 = 1, index5 = 1;
+        int[] result = new int[n + 1];
+        result[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            int num2 = result[index2] * 2, num3 = result[index3] * 3, num5 = result[index5] * 5;
+            result[i] = Math.min(Math.min(num2, num3), num5);
+            if (result[i] == num2) index2++;
+            if (result[i] == num3) index3++;
+            if (result[i] == num5) index5++;
         }
-        return ugly;
+        return result[n];
     }
 }
