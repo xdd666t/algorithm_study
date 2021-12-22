@@ -1,5 +1,9 @@
 package com.study.ten.MaxQueue;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 //59 - II. 队列的最大值
 //请定义一个队列并实现函数 max_value 得到队列里的最大值，要求函数max_value、push_back 和 pop_front 的均摊时间复杂度都是O(1)。
 //
@@ -17,21 +21,31 @@ package com.study.ten.MaxQueue;
 //
 //链接：https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/
 class MaxQueue {
+    Queue<Integer> queue;
+    Deque<Integer> deque;
 
     public MaxQueue() {
-
+        queue = new LinkedList<>();
+        deque = new LinkedList<>();
     }
 
     public int max_value() {
-
+        return deque.isEmpty() ? -1 : deque.peekFirst();
     }
 
     public void push_back(int value) {
-
+        queue.offer(value);
+        while (!deque.isEmpty() && deque.peekLast() < value)
+            deque.pollLast();
+        deque.offerLast(value);
     }
 
     public int pop_front() {
-
+        if (queue.isEmpty()) return -1;
+        if (!deque.isEmpty() && queue.peek().equals(deque.peekFirst())) {
+            deque.pollFirst();
+        }
+        return queue.poll();
     }
 }
 
