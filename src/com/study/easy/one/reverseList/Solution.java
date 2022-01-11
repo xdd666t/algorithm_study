@@ -1,5 +1,7 @@
 package com.study.easy.one.reverseList;
 
+import java.util.List;
+
 //剑指 Offer 24. 反转链表
 //定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
 //
@@ -9,13 +11,12 @@ package com.study.easy.one.reverseList;
 //链接：https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/
 class Solution {
     public ListNode reverseList(ListNode head) {
-        ListNode tail = null;
-        ListNode temp = head;
-        while (temp != null) {
-            ListNode next = temp.next;
-            temp.next = tail;
-            tail = temp;
-            temp = next;
+        ListNode tail = null, cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = tail;
+            tail = cur;
+            cur = next;
         }
         return tail;
     }
