@@ -23,7 +23,8 @@ class Solution {
         dp[2] = 1;
         for (int i = 3; i < n + 1; i++) {
             for (int j = 2; j < i; j++) {
-                dp[i] = Math.max(dp[i], Math.max(j * (i - j), j * dp[i - j]));
+                int cur = Math.max(j * (i - j), j * dp[i - j]);
+                dp[i] = Math.max(dp[i], cur);
             }
         }
         return dp[n];
