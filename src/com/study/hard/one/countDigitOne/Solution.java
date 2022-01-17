@@ -15,21 +15,12 @@ package com.study.hard.one.countDigitOne;
 //链接：https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/
 class Solution {
     public int countDigitOne(int n) {
-        int high = n / 10, cur = n % 10, low = 0, digit = 1;
-        int result = 0;
-        while (high != 0 || cur != 0) {
-            if (cur == 0) {
-                result += high * digit;
-            } else if (cur == 1) {
-                result += high * digit + low + 1;
-            } else {
-                result += (high + 1) * digit;
-            }
-            low += cur * digit;
-            cur = high % 10;
-            high /= 10;
-            digit *= 10;
+        long res = 0, high, low;
+        for (long i = 1; i <= n; i *= 10) {
+            high = (n / (i * 10)) * i;
+            low = Math.min(Math.max(n % (i * 10) - i + 1, 0), i);
+            res += (high + low);
         }
-        return result;
+        return (int) res;
     }
 }

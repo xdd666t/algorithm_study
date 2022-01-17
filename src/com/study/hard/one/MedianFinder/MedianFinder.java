@@ -38,12 +38,12 @@ class MedianFinder {
     }
 
     public void addNum(int num) {
-        if (minQueue.size() != maxQueue.size()) {
-            minQueue.offer(num);
-            maxQueue.offer(minQueue.poll());
-        } else {
+        if (minQueue.size() == maxQueue.size()) {
             maxQueue.offer(num);
             minQueue.offer(maxQueue.poll());
+        } else {
+            minQueue.offer(num);
+            maxQueue.offer(minQueue.poll());
         }
     }
 

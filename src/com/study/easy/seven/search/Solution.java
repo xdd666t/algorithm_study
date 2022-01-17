@@ -25,7 +25,7 @@ class Solution {
     private int binarySearch(int[] nums, int target, boolean low) {
         int left = 0, right = nums.length - 1, result = nums.length;
         while (left <= right) {
-            int mid = (left + right) / 2;
+            int mid = left + (right - left) / 2;
             if (nums[mid] > target || (low && nums[mid] == target)) {
                 right = mid - 1;
                 result = mid;

@@ -20,7 +20,7 @@ class Solution {
 
     private void merge(int[] nums, int left, int right) {
         if (left < right) {
-            int mid = (left + right) / 2;
+            int mid = left + (right - left) / 2;
             merge(nums, left, mid);
             merge(nums, mid + 1, right);
             mergeSort(nums, left, mid, right);

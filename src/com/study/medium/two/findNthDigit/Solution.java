@@ -13,15 +13,16 @@ package com.study.medium.two.findNthDigit;
 //链接：https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/
 class Solution {
     public int findNthDigit(int n) {
+        if (n < 10) return n;
         int digit = 1;
-        long start = 1, count = 9;
+        long start = 1, count = 10;
         while (n > count) {
             n -= count;
             digit += 1;
             start *= 10;
             count = 9 * start * digit;
         }
-        long num = start + (n - 1) / digit;
-        return Long.toString(num).charAt((n - 1) % digit) - '0';
+        long num = start + n / digit;
+        return Long.toString(num).charAt(n % digit) - '0';
     }
 }
