@@ -22,8 +22,7 @@ class Solution {
             if (num == 0) continue;
             max = Math.max(num, max);
             min = Math.min(num, min);
-            if (set.contains(num)) return false;
-            set.add(num);
+            if (!set.add(num)) return false;
         }
         return max - min < 5;
     }
