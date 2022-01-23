@@ -1,4 +1,4 @@
-package com.study.easy.seven.hanota;
+package com.study.easy.six.hanota;
 
 import java.util.List;
 

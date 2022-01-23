@@ -20,28 +20,20 @@ import java.util.Queue;
 //https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
 class Solution {
     public int maxDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
         int result = 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root != null) queue.offer(root);
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            while (size != 0) {
+            int length = queue.size();
+            for (int i = 0; i < length; i++) {
                 TreeNode node = queue.poll();
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-                size--;
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
             }
             result++;
         }
         return result;
+
     }
 }
 
