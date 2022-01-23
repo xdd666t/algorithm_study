@@ -20,7 +20,7 @@ class Solution {
         while ((y & x) == 0) y <<= 1;
         int m = 0, n = 0;
         for (int i = 0; i < nums.length; i++) {
-            if ((y & nums[i]) == 0) m ^= nums[i];
+            if ((y & nums[i]) != 0) m ^= nums[i];
             else n ^= nums[i];
         }
         return new int[]{m, n};
