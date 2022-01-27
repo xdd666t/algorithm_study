@@ -1,6 +1,9 @@
 package com.study.medium.three.levelOrder1;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 //剑指 Offer 32 - I. 从上到下打印二叉树
 //从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
@@ -22,9 +25,8 @@ class Solution {
         List<Integer> list = new ArrayList<>();
         if (root != null) queue.offer(root);
         while (!queue.isEmpty()) {
-            int size = queue.size();
             List<Integer> temp = new ArrayList<>();
-            for (int i = 0; i < size; i++) {
+            for (int i = queue.size(); i > 0; i--) {
                 TreeNode node = queue.poll();
                 if (node.left != null) queue.offer(node.left);
                 if (node.right != null) queue.offer(node.right);

@@ -26,9 +26,8 @@ class Solution {
         if (root != null) queue.offer(root);
         List<List<Integer>> result = new ArrayList<>();
         while (!queue.isEmpty()) {
-            int size = queue.size();
             List<Integer> temp = new ArrayList<>();
-            for (int i = 0; i < size; i++) {
+            for (int i = queue.size(); i > 0; i--) {
                 TreeNode node = queue.poll();
                 if (node.left != null) queue.offer(node.left);
                 if (node.right != null) queue.offer(node.right);
