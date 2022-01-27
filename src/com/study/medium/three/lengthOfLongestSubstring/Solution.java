@@ -22,16 +22,14 @@ import java.util.Map;
 //链接：https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        char[] ch = s.toCharArray();
+        int max = 0, start = 0;
         Map<Character, Integer> map = new HashMap<>();
-        int result = 0;
-        int temp = 0;
-        for (int i = 0; i < ch.length; i++) {
-            int index = map.getOrDefault(ch[i], -1);
-            map.put(ch[i], i);
-            temp = temp < i - index ? temp + 1 : i - index;
-            result = Math.max(result, temp);
+        for (int end = 0; end < s.length(); end++) {
+            char ch = s.charAt(end);
+            start = Math.max(map.getOrDefault(ch, -1) + 1, start);
+            map.put(ch, end);
+            max = Math.max(end - start + 1, max);
         }
-        return result;
+        return max;
     }
 }
