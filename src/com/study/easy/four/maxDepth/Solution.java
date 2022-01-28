@@ -24,8 +24,7 @@ class Solution {
         Queue<TreeNode> queue = new LinkedList<>();
         if (root != null) queue.offer(root);
         while (!queue.isEmpty()) {
-            int length = queue.size();
-            for (int i = 0; i < length; i++) {
+            for (int i = queue.size(); i > 0; i--) {
                 TreeNode node = queue.poll();
                 if (node.left != null) queue.offer(node.left);
                 if (node.right != null) queue.offer(node.right);
