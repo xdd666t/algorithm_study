@@ -29,26 +29,23 @@ import java.util.Queue;
 class MedianFinder {
     Queue<Integer> minQueue, maxQueue;
 
-    /**
-     * initialize your data structure here.
-     */
     public MedianFinder() {
-        minQueue = new PriorityQueue<>();
         maxQueue = new PriorityQueue<>((o1, o2) -> o2 - o1);
+        minQueue = new PriorityQueue<>();
     }
 
     public void addNum(int num) {
         if (minQueue.size() == maxQueue.size()) {
-            maxQueue.offer(num);
-            minQueue.offer(maxQueue.poll());
-        } else {
             minQueue.offer(num);
             maxQueue.offer(minQueue.poll());
+        } else {
+            maxQueue.offer(num);
+            minQueue.offer(maxQueue.poll());
         }
     }
 
     public double findMedian() {
-        return minQueue.size() != maxQueue.size() ? minQueue.peek() : (maxQueue.peek() + minQueue.peek()) / 2.0;
+        return minQueue.size() != maxQueue.size() ? maxQueue.peek() : (maxQueue.peek() + minQueue.peek()) / 2.0;
     }
 }
 

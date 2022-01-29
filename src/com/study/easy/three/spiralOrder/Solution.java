@@ -18,17 +18,17 @@ class Solution {
 
         int rows = matrix.length, columns = matrix[0].length;
         int row = 0, column = 0;
-        boolean[][] mark = new boolean[rows][columns];
+        boolean[][] visited = new boolean[rows][columns];
         int[] result = new int[rows * columns];
         int[][] direction = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         int directionIndex = 0;
         for (int i = 0; i < result.length; i++) {
             result[i] = matrix[row][column];
-            mark[row][column] = true;
+            visited[row][column] = true;
 
             int nextRow = row + direction[directionIndex][0];
             int nextColumn = column + direction[directionIndex][1];
-            if (nextRow < 0 || nextRow >= rows || nextColumn < 0 || nextColumn >= columns || mark[nextRow][nextColumn]) {
+            if (nextRow < 0 || nextRow >= rows || nextColumn < 0 || nextColumn >= columns || visited[nextRow][nextColumn]) {
                 directionIndex = ++directionIndex % 4;
             }
             row += direction[directionIndex][0];

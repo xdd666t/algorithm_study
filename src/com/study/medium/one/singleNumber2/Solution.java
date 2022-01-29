@@ -19,8 +19,8 @@ class Solution {
         for (int num : nums) {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
-        for (int num : nums) {
-            if (map.get(num) == 1) return num;
+        for (int key : map.keySet()) {
+            if (map.get(key) == 1) return key;
         }
 
         return -1;

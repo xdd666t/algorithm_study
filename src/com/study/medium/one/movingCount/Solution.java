@@ -21,9 +21,10 @@ class Solution {
             return 1;
         }
 
+
         int[] dx = new int[]{0, 1};
         int[] dy = new int[]{1, 0};
-        boolean[][] mark = new boolean[m][n];
+        boolean[][] visited = new boolean[m][n];
         Queue<int[]> queue = new LinkedList<>();
         int result = 1;
         queue.offer(new int[]{0, 0});
@@ -32,11 +33,11 @@ class Solution {
             int x = cell[0], y = cell[1];
             for (int i = 0; i < 2; i++) {
                 int tx = dx[i] + x, ty = dy[i] + y;
-                if (tx >= m || ty >= n || getSum(tx) + getSum(ty) > k || mark[tx][ty]) {
+                if (tx >= m || ty >= n || getSum(tx) + getSum(ty) > k || visited[tx][ty]) {
                     continue;
                 }
                 queue.offer(new int[]{tx, ty});
-                mark[tx][ty] = true;
+                visited[tx][ty] = true;
                 result++;
             }
         }
