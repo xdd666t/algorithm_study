@@ -40,33 +40,25 @@ package com.study.hard.one.isMatch;
 //链接：https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/
 class Solution {
     public boolean isMatch(String s, String p) {
-        int m = s.length();
-        int n = p.length();
+        int m = s.length(), n = p.length();
         boolean[][] dp = new boolean[m + 1][n + 1];
         dp[0][0] = true;
-        for (int i = 2; i <= n; i += 2) {
-            dp[0][i] = dp[0][i - 2] && p.charAt(i - 1) == '*';
-        }
-
-        for (int i = 1; i <= m; i++) {
+        for (int i = 0; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (p.charAt(j - 1) == '*') {
-                    if (dp[i][j - 2]) {
-                        dp[i][j] = true;
-                    } else if (dp[i - 1][j] && s.charAt(i - 1) == p.charAt(j - 2)) {
-                        dp[i][j] = true;
-                    } else if (dp[i - 1][j] && p.charAt(j - 2) == '.') {
-                        dp[i][j] = true;
-                    }
+                    dp[i][j] = dp[i][j - 2] || (match(s, p, i, j - 1) && dp[i - 1][j]);
                 } else {
-                    if (dp[i - 1][j - 1] && s.charAt(i - 1) == p.charAt(j - 1)) {
-                        dp[i][j] = true;
-                    } else if (dp[i - 1][j - 1] && p.charAt(j - 1) == '.') {
-                        dp[i][j] = true;
-                    }
+                    dp[i][j] = match(s, p, i, j) && dp[i - 1][j - 1];
                 }
             }
         }
+
         return dp[m][n];
+    }
+
+    private boolean match(String s, String p, int i, int j) {
+        if (i == 0) return false;
+        if (p.charAt(j - 1) == '.') return true;
+        return s.charAt(i - 1) == p.charAt(j - 1);
     }
 }
