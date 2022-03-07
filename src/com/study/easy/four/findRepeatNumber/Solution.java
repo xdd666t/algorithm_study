@@ -16,15 +16,17 @@ import java.util.Map;
 //链接：https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof
 class Solution {
     public int findRepeatNumber(int[] nums) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int sum : nums) {
-            if (!map.containsKey(sum)) {
-                map.put(sum, 0);
-            } else {
-                return sum;
+        int i = 0;
+        while (i < nums.length) {
+            if (nums[i] == i) {
+                i++;
+                continue;
             }
+            if(nums[i] == nums[nums[i]]) return nums[i];
+            int temp = nums[i];
+            nums[i] = nums[temp];
+            nums[temp] = temp;
         }
-
         return -1;
     }
 }
